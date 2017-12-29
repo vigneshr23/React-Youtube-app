@@ -10,20 +10,25 @@ class SearchBar extends Component {
 
 		this.state = {term: ''};
 
-		this.clickHandler = this.clickHandler.bind(this);
+		//this.clickHandler = this.clickHandler.bind(this);
 		}
 
 	render () {
 		return (
-			<div className="input-container">
+			<div className="input-container text-center col-md-9">
 
-				<input value = { this.state.term } onChange = { e => this.setState({ term: e.target.value }) } />
+				<input placeholder="Enter Search Term" value={ this.state.term } onChange={e => this.onInputChange(e.target.value)} />
 
-				<button id="myBut" value="" onClick={ this.clickHandler }>Click Me!</button>
+				<button id="myBut" value="" onClick={ this.clickHandler }>Search</button>
 
 				<div>{ this.state.term }</div>
 			</div>
-		)
+		);
+	}
+
+	onInputChange(term) {
+		this.setState({term});
+		this.props.onSearchTermChange(term);
 	}
 	clickHandler = function (e) {
 		console.log(e.target);
